@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('conversionForm');
     const msg = document.querySelector('.msg');
 
-    async function getExchangeRates(from, to, amount) {
-        const url = `https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert?from=${from}&to=${to}&amount=${amount}`;
+    async function getExchangeRates(from, to, money) {
+        const url = `https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert?from=${from}&to=${to}&amount=${money}`;
         const options = {
             method: 'GET',
             headers: {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const response = await fetch(url, options);
             const amount = await response.json();
         
-            msg.textContent = `1${from} = ${amount.result.toFixed(2)} ${to}`;
+            msg.textContent = `${money}${from} = ${amount.result.toFixed(2)} ${to}`;
         } catch (error) {
             console.error(error);
         }
